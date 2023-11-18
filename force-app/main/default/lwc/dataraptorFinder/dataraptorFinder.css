@@ -1,0 +1,6 @@
+/* CSS styling for elements with the class 'finderHeaderText' */
+.finderHeaderText{
+   /* Set text color to a dark gray (#444444) */
+   color : #444444 !important;
+}
+

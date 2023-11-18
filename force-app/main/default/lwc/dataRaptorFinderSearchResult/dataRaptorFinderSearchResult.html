@@ -1,0 +1,39 @@
+<template>
+    <!-- Main grid layout with two columns -->
+    <div class="slds-grid slds-gutters">
+        <!-- Left column with a Lightning Card for Parent Omniscript -->
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-card title="Parent Omniscript" >
+                <!-- Div with fixed height for the Lightning Datatable to make it scrollable -->
+                <div style="height:300px" >
+                    <!-- Lightning Datatable for Parent Omniscript -->
+                    <lightning-datatable
+                    class="slds-p-around_small"
+                    data={omniSciptResult}
+                    columns={omniTableColumns}
+                    key-field="Id"
+                    onrowaction={handleShowMoreAction}
+                    >
+                    </lightning-datatable>
+                </div>
+            </lightning-card>
+        </div>
+        <!-- Right column with a Lightning Card for Parent Integration Procedure -->
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-card title="Parent Integration Procedure" >
+                <!-- Container with fixed height for the Lightning Datatable -->
+                <div style="height:300px" >
+                    <!-- Lightning Datatable for Parent Integration Procedure -->
+                    <lightning-datatable
+                    class="slds-p-around_small"
+                    data={ipResult}
+                    columns={ipTableColumns}
+                    key-field="Id"
+                    onrowaction={handleShowMoreAction}
+                    >
+                    </lightning-datatable>
+                </div>
+            </lightning-card>
+        </div>
+    </div>
+</template>

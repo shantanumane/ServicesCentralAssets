@@ -1,0 +1,60 @@
+<template>
+    <!-- Lightning Card for the search input -->
+    <lightning-card  class="finderHeaderText slds-text-title_caps slds-text-color_weak" >
+        <div class="slds-p-around_medium">
+            <div class="slds-form-element">
+                <!-- Search input section -->
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_2-of-12">
+                        <label class="slds-form-element__label" for="typeahead">Search Dataraptor</label>
+                    </div>
+                    <!-- Display spinner while searching -->
+                    <div  class="slds-col slds-size_1-of-12 ">
+                        <template if:true={showSpinner}>
+                            <lightning-spinner size="x-small" alternative-text="Loading"></lightning-spinner>
+                        </template> 
+                    </div>
+                </div>
+                
+                <div class="slds-form-element__control">
+                    <!-- Lightning input for search -->
+                    <lightning-input
+                        type="text"
+                        id="typeahead"
+                        label=""
+                        placeholder="Enter Dataraptor Name"
+                        value={drSearchTerm}
+                        onchange={searchDataRaptorName}
+                    ></lightning-input>
+                    <!-- Display suggestions dropdown if there are dataraptors presents with input name -->
+                    <div if:true={showSuggestions} class="slds-dropdown slds-dropdown_medium slds-dropdown_left">
+                        <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                            <!-- Iterate through DataRaptor suggestions -->
+                            <template for:each={drSuggestions} for:item="drRecord">
+                                <li
+                                    key={drRecord.Id}
+                                    class="slds-listbox__item"
+                                    role="presentation"
+                                    onclick={handleDrSuggestionClick}
+                                    data-id={drRecord.Id}
+                                >
+                                    <div class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta">
+                                        <span class="slds-media__figure">
+                                            <lightning-icon icon-name="doctype:pack" size="small"></lightning-icon>
+                                        </span>
+                                        <span class="slds-media__body">
+                                            <span class="slds-listbox__option-text">{drRecord.Name}</span>
+                                        </span>
+                                    </div>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </lightning-card>
+    <!-- Custom DataRaptor Finder Search Result component -->
+    <c-data-raptor-finder-search-result class="slds-p-around_small" omni-scipt-result={arrayOfParentAsOmniscript} ip-result={arrayOfParentAsIP} ></c-data-raptor-finder-search-result>
+</template>
